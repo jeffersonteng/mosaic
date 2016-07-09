@@ -71,14 +71,14 @@ class App extends React.Component {
     }
 
     return (
-      <div class="filterView">
-        <div class="races">
+      <div className="filterView">
+        <div className="races">
           {raceComponentList}
         </div>
-        <div class="genders">
+        <div className="genders">
           {genderComponentList}
         </div>
-        <div class="users">
+        <div className="users">
           {userComponentList}
         </div>
       </div>
