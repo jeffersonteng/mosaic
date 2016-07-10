@@ -63,6 +63,12 @@ const users = {
                   "city": "New York",
                   "state": "NY",
                   "race": [0]
+                },
+                3: {
+                  "name": "Aziz Ansari",
+                  "city": "New York",
+                  "state": "NY",
+                  "race": [2]
                 }
               };
 
