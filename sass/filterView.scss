@@ -1,24 +1,32 @@
 @import 'base';
 
-$collapased-menu-height: 50px;
-
 .filter-view {
   font-family: $font-family-text;
+  @include rem(font-size, 12px);
 
   .filter-menu {
+    transition: height 1s ease-in-out;
+    @include rem(margin-left, 0.5px);
+    @include rem(margin-right, 0.5px);
+    border: 0.05px solid #4f4f4f;
     top: 0;
-    position:fixed;
-    height: auto;
-    background-color: white;
+    position: relative;
+    @include rem(height, 330px);
+
+    overflow: hidden;
+    background-color: rgb(243, 243, 243);
 
     .filter-view-header {
-      border: 2px dotted blue;
       @include rem(height, 30px);
       @include rem(line-height, 30px);
+      text-align: center;
+    }
+
+    .filter-view-header {
+      cursor: pointer;
     }
 
     .filter-section-group {
-        @include rem(margin-top, 10px);
 
         .filter-section {
           display: initial; 
@@ -36,7 +44,7 @@ $collapased-menu-height: 50px;
               @include rem(margin, 6px);
               @include rem(border-radius, 3px);
               display: inline-block;
-              border: 1px solid black;
+              border: 1px solid #4f4f4f;
             }
           }
         }
@@ -45,10 +53,6 @@ $collapased-menu-height: 50px;
 
   .filter-menu.collapsed {
     @include rem(height, 30px);
-    color: blue;
-    .filter-section {
-      visibility: hidden; 
-    }
   }
 
   .user-section {
@@ -59,7 +63,7 @@ $collapased-menu-height: 50px;
       @include rem(height, 150px);
     }
     .user-box {
-      border: 1px solid black;
+      border: 1px solid #4f4f4f;
       display: inline-block;
       @include rem(padding, 5px);
       @include rem(margin, 10px);
