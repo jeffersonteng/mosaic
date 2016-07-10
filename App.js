@@ -75,7 +75,7 @@ class App extends React.Component {
 
     const orientationComponentList = [];
 
-    for (var id in genders) {
+    for (var id in orientations) {
       orientationComponentList.push(<Orientation key={id} name={orientations[id]} />);
     }
 
@@ -87,15 +87,28 @@ class App extends React.Component {
 
     return (
       <div className="filter-view">
-        <div className="races filter-list">
-          {raceComponentList}
+
+        <div className="filter-section">
+          <div className="filter-header">Race</div>
+          <div className="races filter-list">
+            {raceComponentList}
+          </div>
         </div>
-        <div className="genders">
-          {genderComponentList}
+
+        <div className="filter-section">
+          <div className="filter-header">Gender</div>
+          <div className="genders filter-list">
+            {genderComponentList}
+          </div>
         </div>
-        <div className="orientations">
-          {orientationComponentList}
+
+        <div className="filter-section">
+          <div className="filter-header">Orientation</div>
+          <div className="orientations filter-list">
+            {orientationComponentList}
+          </div>
         </div>
+
         <div className="users">
           {userComponentList}
         </div>
