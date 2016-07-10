@@ -3,6 +3,7 @@ import Race from './Race';
 import Gender from './Gender';
 import Orientation from './Orientation';
 import User from './User';
+import Menu from './Menu';
 
 require('./sass/filterView.scss');
 
@@ -47,14 +48,20 @@ const orientations = {
 const users = {
                 0: {
                   "name": "Jefferson Teng",
+                  "city": "Emeryville",
+                  "state": "CA",
                   "race": [2]
                 },
                 1: {
                   "name": "Chris Parker",
+                  "city": "Chicago",
+                  "state": "IL",
                   "race": [1]
                 },
                 2: {
                   "name": "Jeff Jacobs",
+                  "city": "New York",
+                  "state": "NY",
                   "race": [0]
                 }
               };
@@ -82,36 +89,19 @@ class App extends React.Component {
     const userComponentList = [];
 
     for (var id in users) {
-      userComponentList.push(<User key={id} name={users[id]["name"]} />);
+      userComponentList.push(<User key={id} user={users[id]} />);
     }
 
     return (
       <div className="filter-view">
+        <Menu genderComponentList={genderComponentList} orientationComponentList={orientationComponentList} raceComponentList={raceComponentList} />
 
-        <div className="filter-section">
-          <div className="filter-header">Race</div>
-          <div className="races filter-list">
-            {raceComponentList}
+        <div className="user-section">
+          <div className="users">
+            {userComponentList}
           </div>
         </div>
 
-        <div className="filter-section">
-          <div className="filter-header">Gender</div>
-          <div className="genders filter-list">
-            {genderComponentList}
-          </div>
-        </div>
-
-        <div className="filter-section">
-          <div className="filter-header">Orientation</div>
-          <div className="orientations filter-list">
-            {orientationComponentList}
-          </div>
-        </div>
-
-        <div className="users">
-          {userComponentList}
-        </div>
       </div>
     );
   }
