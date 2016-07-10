@@ -1,6 +1,7 @@
 import React from 'react';
 import Race from './Race';
 import Gender from './Gender';
+import Orientation from './Orientation';
 import User from './User';
 
 require('./sass/filterView.scss');
@@ -35,6 +36,14 @@ const genders = {
                   16: "Transsexual",
                   17: "Two-Spirit",
                 };
+
+const orientations = {
+                       0: "Heterosexual",
+                       1: "Homosexual",
+                       2: "Bisexual",
+                       3: "Pansexual",
+                       4: "Asexual"
+                     };
 const users = {
                 0: {
                   "name": "Jefferson Teng",
@@ -45,7 +54,7 @@ const users = {
                   "race": [1]
                 },
                 2: {
-                  "name": "John Jacobs",
+                  "name": "Jeff Jacobs",
                   "race": [0]
                 }
               };
@@ -64,6 +73,12 @@ class App extends React.Component {
       genderComponentList.push(<Gender key={id} name={genders[id]} />);
     }
 
+    const orientationComponentList = [];
+
+    for (var id in genders) {
+      orientationComponentList.push(<Orientation key={id} name={orientations[id]} />);
+    }
+
     const userComponentList = [];
 
     for (var id in users) {
@@ -71,12 +86,15 @@ class App extends React.Component {
     }
 
     return (
-      <div className="filterView">
-        <div className="races">
+      <div className="filter-view">
+        <div className="races filter-list">
           {raceComponentList}
         </div>
         <div className="genders">
           {genderComponentList}
+        </div>
+        <div className="orientations">
+          {orientationComponentList}
         </div>
         <div className="users">
           {userComponentList}
