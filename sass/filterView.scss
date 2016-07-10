@@ -56,7 +56,6 @@
   }
 
   .user-section {
-    @include rem(margin-top, 40px);
 
     .user-pic {
       @include rem(width, 150px);
