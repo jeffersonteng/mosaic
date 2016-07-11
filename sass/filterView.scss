@@ -1,4 +1,7 @@
 @import 'base';
+html {
+    background-color: #fbfbfb;
+}
 
 .filter-view {
   font-family: $font-family-text;
@@ -6,15 +9,15 @@
 
   .filter-menu {
     transition: height 1s ease-in-out;
-    @include rem(margin-left, 0.5px);
-    @include rem(margin-right, 0.5px);
     border: 0.05px solid #4f4f4f;
+    border-bottom: 1px solid #d0d4d9;
+    box-shadow: 0px 1px 1px #d0d4d9;
     top: 0;
     position: relative;
     @include rem(height, 330px);
 
     overflow: hidden;
-    background-color: rgb(243, 243, 243);
+    background-color: #fff;
 
     .filter-view-header {
       @include rem(height, 30px);
