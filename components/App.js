@@ -72,26 +72,34 @@ const users = {
 
 class App extends React.Component {
     handleRaceClick() {
+        console.log("clicked race");
+    }
 
+    handleGenderClick() {
+        console.log("clicked gender");
+    }
+
+    handleOrientationClick() {
+        console.log("clicked orientation");
     }
 
     render() {
         const raceComponentList = [];
 
         for (var id in races) {
-          raceComponentList.push(<MenuItem key={id} name={races[id]} />);
+          raceComponentList.push(<MenuItem key={id} name={races[id]} handleItemClick={this.handleRaceClick}/>);
         }
 
         const genderComponentList = [];
 
         for (var id in genders) {
-          genderComponentList.push(<MenuItem key={id} name={genders[id]} />);
+          genderComponentList.push(<MenuItem key={id} name={genders[id]} handleItemClick={this.handleGenderClick}/>);
         }
 
         const orientationComponentList = [];
 
         for (var id in orientations) {
-          orientationComponentList.push(<MenuItem key={id} name={orientations[id]} />);
+          orientationComponentList.push(<MenuItem key={id} name={orientations[id]} handleItemClick={this.handleOrientationClick}/>);
         }
 
         const userComponentList = [];
