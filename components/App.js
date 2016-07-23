@@ -1,7 +1,5 @@
 import React from 'react';
-import Race from './Race';
-import Gender from './Gender';
-import Orientation from './Orientation';
+import MenuItem from './MenuItem';
 import User from './User';
 import Menu from './Menu';
 
@@ -77,19 +75,19 @@ class App extends React.Component {
     const raceComponentList = [];
 
     for (var id in races) {
-      raceComponentList.push(<Race key={id} name={races[id]} />);
+      raceComponentList.push(<MenuItem key={id} name={races[id]} />);
     }
 
     const genderComponentList = [];
 
     for (var id in genders) {
-      genderComponentList.push(<Gender key={id} name={genders[id]} />);
+      genderComponentList.push(<MenuItem key={id} name={genders[id]} />);
     }
 
     const orientationComponentList = [];
 
     for (var id in orientations) {
-      orientationComponentList.push(<Orientation key={id} name={orientations[id]} />);
+      orientationComponentList.push(<MenuItem key={id} name={orientations[id]} />);
     }
 
     const userComponentList = [];

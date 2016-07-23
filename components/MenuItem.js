@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Race extends React.Component {
+class MenuItem extends React.Component {
   constructor() {
     super();
     this.state = {selected: false};
   }
 
   handleClick() {
-    console.log("Race clicked");
+    console.log("item clicked");
     this.setState({
       selected: !this.state.selected
     });
@@ -23,4 +23,4 @@ class Race extends React.Component {
   }
 }
 
-export default Race;
+export default MenuItem;
