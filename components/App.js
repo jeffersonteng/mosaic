@@ -5,7 +5,7 @@ import Orientation from './Orientation';
 import User from './User';
 import Menu from './Menu';
 
-require('./sass/filterView.scss');
+require('../sass/filterView.scss');
 
 // https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States#Racial_and_ethnic_categories
 const races = {
