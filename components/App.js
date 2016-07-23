@@ -71,44 +71,48 @@ const users = {
               };
 
 class App extends React.Component {
-  render() {
-    const raceComponentList = [];
+    handleRaceClick() {
 
-    for (var id in races) {
-      raceComponentList.push(<MenuItem key={id} name={races[id]} />);
     }
 
-    const genderComponentList = [];
+    render() {
+        const raceComponentList = [];
 
-    for (var id in genders) {
-      genderComponentList.push(<MenuItem key={id} name={genders[id]} />);
-    }
+        for (var id in races) {
+          raceComponentList.push(<MenuItem key={id} name={races[id]} />);
+        }
 
-    const orientationComponentList = [];
+        const genderComponentList = [];
 
-    for (var id in orientations) {
-      orientationComponentList.push(<MenuItem key={id} name={orientations[id]} />);
-    }
+        for (var id in genders) {
+          genderComponentList.push(<MenuItem key={id} name={genders[id]} />);
+        }
 
-    const userComponentList = [];
+        const orientationComponentList = [];
 
-    for (var id in users) {
-      userComponentList.push(<User key={id} user={users[id]} />);
-    }
+        for (var id in orientations) {
+          orientationComponentList.push(<MenuItem key={id} name={orientations[id]} />);
+        }
 
-    return (
-      <div className="filter-view">
-        <Menu genderComponentList={genderComponentList} orientationComponentList={orientationComponentList} raceComponentList={raceComponentList} />
+        const userComponentList = [];
 
-        <div className="user-section">
-          <div className="users">
-            {userComponentList}
+        for (var id in users) {
+          userComponentList.push(<User key={id} user={users[id]} />);
+        }
+
+        return (
+          <div className="filter-view">
+            <Menu genderComponentList={genderComponentList} orientationComponentList={orientationComponentList} raceComponentList={raceComponentList} />
+
+            <div className="user-section">
+              <div className="users">
+                {userComponentList}
+              </div>
+            </div>
+
           </div>
-        </div>
-
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
