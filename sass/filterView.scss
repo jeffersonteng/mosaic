@@ -50,6 +50,11 @@ html {
               @include rem(border-radius, 3px);
               display: inline-block;
               border: 1px solid #4f4f4f;
+              color: white;
+
+            }
+            .selected {
+              color: blue;
             }
           }
         }
