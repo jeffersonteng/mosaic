@@ -71,35 +71,43 @@ const users = {
               };
 
 class App extends React.Component {
-    handleRaceClick() {
-        console.log("clicked race");
+    constructor() {
+       super();
+       this.state = {
+           selectedRaces: [],
+           selectedGenders: [],
+           selectedOrientations: []
+       };
+    }
+    handleRaceClick(raceId) {
+        console.log("clicked race: " + raceId);
     }
 
-    handleGenderClick() {
-        console.log("clicked gender");
+    handleGenderClick(genderId) {
+        console.log("clicked gender: " + genderId);
     }
 
-    handleOrientationClick() {
-        console.log("clicked orientation");
+    handleOrientationClick(orientationId) {
+        console.log("clicked orientation: " + orientationId);
     }
 
     render() {
         const raceComponentList = [];
 
         for (var id in races) {
-          raceComponentList.push(<MenuItem key={id} name={races[id]} handleItemClick={this.handleRaceClick}/>);
+          raceComponentList.push(<MenuItem key={id} id={id} name={races[id]} handleItemClick={this.handleRaceClick}/>);
         }
 
         const genderComponentList = [];
 
         for (var id in genders) {
-          genderComponentList.push(<MenuItem key={id} name={genders[id]} handleItemClick={this.handleGenderClick}/>);
+          genderComponentList.push(<MenuItem key={id} id={id} name={genders[id]} handleItemClick={this.handleGenderClick}/>);
         }
 
         const orientationComponentList = [];
 
         for (var id in orientations) {
-          orientationComponentList.push(<MenuItem key={id} name={orientations[id]} handleItemClick={this.handleOrientationClick}/>);
+          orientationComponentList.push(<MenuItem key={id} id={id} name={orientations[id]} handleItemClick={this.handleOrientationClick}/>);
         }
 
         const userComponentList = [];

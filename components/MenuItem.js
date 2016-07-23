@@ -7,7 +7,7 @@ class MenuItem extends React.Component {
   }
 
   handleClick() {
-    this.props.handleItemClick();
+    this.props.handleItemClick(this.props.id);
     console.log("item clicked");
     this.setState({
       selected: !this.state.selected
