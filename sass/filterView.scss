@@ -18,6 +18,14 @@ html {
     position: relative;
     @include rem(height, 360px);
 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently*/
+
+
     overflow: hidden;
     background-color: #2196F3;
 
@@ -52,6 +60,7 @@ html {
               border: 5px solid #BBDEFB;
               background-color: #BBDEFB;
               cursor: pointer;
+
             }
 
             .selected {
