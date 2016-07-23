@@ -67,6 +67,36 @@ const users = {
                   "city": "New York",
                   "state": "NY",
                   "race": [2]
+                },
+                4: {
+                    "name": "race0",
+                    "city": "New York",
+                    "state": "NY",
+                    "race": [0]
+                },
+                5: {
+                    "name": "race1",
+                    "city": "New York",
+                    "state": "NY",
+                    "race": [1]
+                },
+                6: {
+                    "name": "race2",
+                    "city": "New York",
+                    "state": "NY",
+                    "race": [2]
+                },
+                7: {
+                    "name": "race3",
+                    "city": "New York",
+                    "state": "NY",
+                    "race": [3]
+                },
+                8: {
+                    "name": "race4",
+                    "city": "New York",
+                    "state": "NY",
+                    "race": [4]
                 }
               };
 
@@ -79,8 +109,32 @@ class App extends React.Component {
            selectedOrientations: []
        };
     }
+
     handleRaceClick(raceId) {
-        console.log("clicked race: " + raceId);
+        var selectedRaces = this.state.selectedRaces;
+        var idx = -1;
+        for (var i=0; i < selectedRaces.length; i++) {
+            if (selectedRaces[i] === raceId) {
+                idx = i;
+                break;
+            }
+        }
+        console.log("idx: " + idx);
+        console.log("selected race: " + raceId);
+
+        if (idx !== -1) { // exists
+            console.log("exists! the state is going to be set to: ");
+            console.log(selectedRaces.slice(0, idx).concat(selectedRaces.slice(idx + 1)));
+            this.setState({
+                selectedRaces: selectedRaces.slice(0, idx).concat(selectedRaces.slice(idx + 1))
+            });
+        } else {
+            console.log("no exists the state is going to be set to: ");
+            console.log(selectedRaces.concat(raceId));
+            this.setState({
+                selectedRaces: selectedRaces.concat(raceId)
+            });
+        }
     }
 
     handleGenderClick(genderId) {
@@ -95,25 +149,42 @@ class App extends React.Component {
         const raceComponentList = [];
 
         for (var id in races) {
-          raceComponentList.push(<MenuItem key={id} id={id} name={races[id]} handleItemClick={this.handleRaceClick}/>);
+            raceComponentList.push(<MenuItem key={id} id={id} name={races[id]} handleItemClick={this.handleRaceClick.bind(this)}/>);
         }
 
         const genderComponentList = [];
 
         for (var id in genders) {
-          genderComponentList.push(<MenuItem key={id} id={id} name={genders[id]} handleItemClick={this.handleGenderClick}/>);
+            genderComponentList.push(<MenuItem key={id} id={id} name={genders[id]} handleItemClick={this.handleGenderClick.bind(this)}/>);
         }
 
         const orientationComponentList = [];
 
         for (var id in orientations) {
-          orientationComponentList.push(<MenuItem key={id} id={id} name={orientations[id]} handleItemClick={this.handleOrientationClick}/>);
+            orientationComponentList.push(<MenuItem key={id} id={id} name={orientations[id]} handleItemClick={this.handleOrientationClick.bind(this)}/>);
         }
 
         const userComponentList = [];
 
-        for (var id in users) {
-          userComponentList.push(<User key={id} user={users[id]} />);
+        var tempState = this.state;
+        console.log("selected poop: " + tempState.selectedRaces);
+
+        if (tempState.selectedRaces.length === 0) {
+            for (var id in users) {
+                userComponentList.push(<User key={id} user={users[id]} />);
+            }
+        } else {
+            for (var id in users) {
+                var isRaceMatch = users[id]["race"].filter(function(n) {
+                        return tempState.selectedRaces.indexOf(n.toString()) !== -1;
+                    }).length > 0;
+                console.log(users[id]["race"]);
+                console.log(isRaceMatch);
+
+                if (isRaceMatch) {
+                    userComponentList.push(<User key={id} user={users[id]} />);
+                }
+            }
         }
 
         return (
