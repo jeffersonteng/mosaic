@@ -45,58 +45,76 @@ const orientations = {
                      };
 const users = {
                 0: {
-                  "name": "Jefferson Teng",
-                  "city": "Emeryville",
-                  "state": "CA",
-                  "race": [2]
+                    "name": "Jefferson Teng",
+                    "city": "Emeryville",
+                    "state": "CA",
+                    "races": [2],
+                    "genders": [0],
+                    "orientations": [0]
                 },
                 1: {
-                  "name": "Chris Parker",
-                  "city": "Chicago",
-                  "state": "IL",
-                  "race": [1]
+                    "name": "Chris Parker",
+                    "city": "Chicago",
+                    "state": "IL",
+                    "races": [1],
+                    "genders": [1],
+                    "orientations": [1]
                 },
                 2: {
-                  "name": "Jeff Jacobs",
-                  "city": "New York",
-                  "state": "NY",
-                  "race": [0]
+                    "name": "Jeff Jacobs",
+                    "city": "New York",
+                    "state": "NY",
+                    "races": [0],
+                    "genders": [2],
+                    "orientations": [2]
                 },
                 3: {
-                  "name": "Aziz Ansari",
-                  "city": "New York",
-                  "state": "NY",
-                  "race": [2]
+                    "name": "Aziz Ansari",
+                    "city": "New York",
+                    "state": "NY",
+                    "races": [2],
+                    "genders": [3],
+                    "orientations": [3]
                 },
                 4: {
                     "name": "race0",
                     "city": "New York",
                     "state": "NY",
-                    "race": [0]
+                    "races": [0],
+                    "genders": [4],
+                    "orientations": [4]
                 },
                 5: {
                     "name": "race1",
                     "city": "New York",
                     "state": "NY",
-                    "race": [1]
+                    "races": [1],
+                    "genders": [5],
+                    "orientations": [5]
                 },
                 6: {
                     "name": "race2",
                     "city": "New York",
                     "state": "NY",
-                    "race": [2]
+                    "races": [2],
+                    "genders": [6],
+                    "orientations": [6]
                 },
                 7: {
                     "name": "race3",
                     "city": "New York",
                     "state": "NY",
-                    "race": [3]
+                    "races": [3],
+                    "genders": [7],
+                    "orientations": [7]
                 },
                 8: {
                     "name": "race4",
                     "city": "New York",
                     "state": "NY",
-                    "race": [4]
+                    "races": [4],
+                    "genders": [8],
+                    "orientations": [8]
                 }
               };
 
@@ -138,11 +156,57 @@ class App extends React.Component {
     }
 
     handleGenderClick(genderId) {
-        console.log("clicked gender: " + genderId);
+        var selectedGenders = this.state.selectedGenders;
+        var idx = -1;
+        for (var i=0; i < selectedGenders.length; i++) {
+            if (selectedGenders[i] === genderId) {
+                idx = i;
+                break;
+            }
+        }
+        console.log("idx: " + idx);
+        console.log("selected gender: " + genderId);
+
+        if (idx !== -1) { // exists
+            console.log("exists! the state is going to be set to: ");
+            console.log(selectedGenders.slice(0, idx).concat(selectedGenders.slice(idx + 1)));
+            this.setState({
+                selectedGenders: selectedGenders.slice(0, idx).concat(selectedGenders.slice(idx + 1))
+            });
+        } else {
+            console.log("no exists the state is going to be set to: ");
+            console.log(selectedGenders.concat(genderId));
+            this.setState({
+                selectedGenders: selectedGenders.concat(genderId)
+            });
+        }
     }
 
     handleOrientationClick(orientationId) {
-        console.log("clicked orientation: " + orientationId);
+        var selectedOrientations = this.state.selectedOrientations;
+        var idx = -1;
+        for (var i=0; i < selectedOrientations.length; i++) {
+            if (selectedOrientations[i] === orientationId) {
+                idx = i;
+                break;
+            }
+        }
+        console.log("idx: " + idx);
+        console.log("selected orientation: " + orientationId);
+
+        if (idx !== -1) { // exists
+            console.log("exists! the state is going to be set to: ");
+            console.log(selectedOrientations.slice(0, idx).concat(selectedOrientations.slice(idx + 1)));
+            this.setState({
+                selectedOrientations: selectedOrientations.slice(0, idx).concat(selectedOrientations.slice(idx + 1))
+            });
+        } else {
+            console.log("no exists the state is going to be set to: ");
+            console.log(selectedOrientations.concat(orientationId));
+            this.setState({
+                selectedOrientations: selectedOrientations.concat(orientationId)
+            });
+        }
     }
 
     render() {
@@ -169,19 +233,28 @@ class App extends React.Component {
         var tempState = this.state;
         console.log("selected poop: " + tempState.selectedRaces);
 
-        if (tempState.selectedRaces.length === 0) {
+        if (tempState.selectedRaces.length === 0 &&
+            tempState.selectedGenders.length === 0 &&
+            tempState.selectedOrientations.length === 0) {
+
             for (var id in users) {
                 userComponentList.push(<User key={id} user={users[id]} />);
             }
         } else {
             for (var id in users) {
-                var isRaceMatch = users[id]["race"].filter(function(n) {
+                var isRaceMatch = users[id]["races"].filter(function(n) {
                         return tempState.selectedRaces.indexOf(n.toString()) !== -1;
                     }).length > 0;
-                console.log(users[id]["race"]);
-                console.log(isRaceMatch);
 
-                if (isRaceMatch) {
+                var isGenderMatch = users[id]["genders"].filter(function(n) {
+                        return tempState.selectedGenders.indexOf(n.toString()) !== -1;
+                    }).length > 0;
+
+                var isOrientationMatch = users[id]["orientations"].filter(function(n) {
+                        return tempState.selectedOrientations.indexOf(n.toString()) !== -1;
+                    }).length > 0;
+
+                if (isRaceMatch || isGenderMatch || isOrientationMatch) {
                     userComponentList.push(<User key={id} user={users[id]} />);
                 }
             }
