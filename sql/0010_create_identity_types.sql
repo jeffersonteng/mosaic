@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS orientations (
   orientation VARCHAR(35)
 );
 
+-- https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States#Racial_and_ethnic_categories
 INSERT INTO races (id, race) VALUES
     ('0', 'White American'),
     ('1', 'Black American'),
@@ -20,6 +21,7 @@ INSERT INTO races (id, race) VALUES
     ('3', 'Native Hawaiian'),
     ('4', 'Middle Eastern American');
 
+-- http://www.slate.com/blogs/lexicon_valley/2014/02/21/gender_facebook_now_has_56_categories_to_choose_from_including_cisgender.html
 INSERT INTO genders (id, gender) VALUES
     ('0', 'Agender/Neutrois'),
     ('1', 'Androgyne/Androgynous'),

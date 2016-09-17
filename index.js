@@ -1,9 +1,6 @@
 var express = require('express');
+var db = require('./db/DBClient');
 var app = express();
-
-//
-var pg = require('pg');
-var client = new pg.Client();
 
 app.use(express.static('public'));
 
@@ -25,34 +22,18 @@ app.get('/users/new', (req, res) => {
   res.sendFile(__dirname + '/static/edit.html');
 });
 
+app.get('/users', (req, res) => {
+  db.query('select * from users', [], function(err, result) {
+    if (result.rows.length === 0) {
+      res.status(404).send('Not Found');
+    } else {
+      res.json(result.rows);
+    }
+  });
+});
+
 app.get('/users/:uid', (req, res) => {
   var uid = req.params.uid;
-  console.log(uid);
-  res.send("Trying to get user: " + uid);
-});
-
-app.post('/users', (req, res) => {
-
-});
-
-app.get('/db', (req, res) => {
-
-  // connect to our database
-  client.connect(function (err) {
-    if (err) throw err;
-
-    // execute a query on our database
-    client.query('SELECT * FROM foo', function (err, result) {
-      if (err) throw err;
-
-      // disconnect the client
-      client.end(function (err) {
-        if (err) throw err;
-      });
-
-      res.json(result.rows);
-    });
-  });
 });
 
 app.listen(8080);
