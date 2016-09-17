@@ -270,6 +270,8 @@ class App extends React.Component {
               </div>
             </div>
 
+            <div>Sign up here</div>
+
           </div>
         );
     }

@@ -8,7 +8,11 @@ var client = new pg.Client();
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/static/index.html');
+});
+
+app.get('/user/new', (req, res) => {
+  res.sendFile(__dirname + '/static/edit.html');
 });
 
 app.get('/db', (req, res) => {
