@@ -22,18 +22,14 @@ app.get('/users/new', (req, res) => {
   res.sendFile(__dirname + '/static/edit.html');
 });
 
-app.get('/users', (req, res) => {
-  db.query('select * from users', [], function(err, result) {
-    if (result.rows.length === 0) {
+app.get('/users/:uid', (req, res) => {
+  db.query('select * from users where id = $1', [req.params.uid], function(err, result) {
+    if (result == null || result.rows.length === 0) {
       res.status(404).send('Not Found');
     } else {
       res.json(result.rows);
     }
   });
-});
-
-app.get('/users/:uid', (req, res) => {
-  var uid = req.params.uid;
 });
 
 app.listen(8080);
