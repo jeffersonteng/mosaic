@@ -22,6 +22,14 @@ app.get('/users/new', (req, res) => {
   res.sendFile(__dirname + '/static/edit.html');
 });
 
+app.post('/users', (req, res) => {
+  // on the form submission, do form validation
+
+  // hook up the button to this endpoint
+
+  // insert a new row into the users table
+});
+
 app.get('/users/:uid', (req, res) => {
   db.query('select * from users where id = $1', [req.params.uid], function(err, result) {
     if (result == null || result.rows.length === 0) {
@@ -29,6 +37,16 @@ app.get('/users/:uid', (req, res) => {
     } else {
       res.json(result.rows);
     }
+  });
+});
+
+app.get('/genders', (req, res) => {
+  db.query('select * from genders', [], function(err, result) {
+      if (result == null || result.rows.length === 0) {
+        res.status(404).send('Not Found');
+      } else {
+        res.json(result.rows);
+      }
   });
 });
 
