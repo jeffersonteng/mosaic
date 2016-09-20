@@ -1,8 +1,8 @@
 CREATE TABLE users (
   id SERIAL,
-  name VARCHAR(25),
-  city VARCHAR(25),
-  gender INTEGER REFERENCES genders,
-  race INTEGER REFERENCES races,
-  orientation INTEGER REFERENCES orientations
+  name VARCHAR(25) NOT NULL,
+  city VARCHAR(25) NOT NULL,
+  gender INTEGER REFERENCES genders NOT NULL,
+  race INTEGER REFERENCES races NOT NULL,
+  orientation INTEGER REFERENCES orientations NOT NULL
 );
