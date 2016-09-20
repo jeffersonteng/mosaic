@@ -1,8 +1,11 @@
 var express = require('express');
 var db = require('./db/DBClient');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 /*
  GET    /session/new gets the webpage that has the login form
@@ -23,6 +26,8 @@ app.get('/users/new', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
   // on the form submission, do form validation
 
   // hook up the button to this endpoint

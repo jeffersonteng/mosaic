@@ -11,9 +11,35 @@ class EditForm extends React.Component {
     }
 
     render() {
-        console.log('wah');
         return (
-            <div>Hello WOrld</div>
+            <form action="/users" method="POST">
+                <div>
+                    Name:
+                    <input type="text" name="name"/>
+                </div>
+
+                <div>
+                    City:
+                    <input type="text" name="city"/>
+                </div>
+
+                <div>
+                    Gender:
+                    <input type="text" name="gender"/>
+                </div>
+
+                <div>
+                    Race:
+                    <input type="text" name="race"/>
+                </div>
+
+                <div>
+                    Orientation:
+                    <input type="text" name="orientation"/>
+                </div>
+
+                <input type="submit"/>
+            </form>
         );
     }
 }
